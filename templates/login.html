@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Log in · Ink & Ideas{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-intro"><p class="eyebrow">GOOD TO HAVE YOU BACK</p><h1>Pick up where<br><em>you left off.</em></h1><p>Sign in to write, edit your stories, and keep the conversation going.</p></div>
+<form class="form-card" method="post"><h2>Welcome back</h2><label>Username</label><input name="username" required placeholder="Your username"><label>Password</label><input name="password" type="password" required placeholder="Your password"><button class="button full" type="submit">Log in</button><p class="form-note">New here? <a href="{{ url_for('register') }}">Create an account</a></p></form></div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Home · Ink & Ideas{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">A LITTLE SPACE FOR BIG IDEAS</p>
+  <h1>Stories worth<br><em>sharing.</em></h1>
+  <p class="hero-copy">Write about what you love, learn from others, and join the conversation.</p>
+  {% if session.get('user_id') %}
+    <a class="button" href="{{ url_for('new_post') }}">Write your first draft ↗</a>
+  {% else %}
+    <a class="button" href="{{ url_for('register') }}">Start writing ↗</a>
+  {% endif %}
+</section>
+<div class="section-heading"><div><p class="eyebrow">THE COMMUNITY</p><h2>Latest stories</h2></div><span>{{ posts|length }} posts</span></div>
+{% if posts %}
+  <div class="post-grid">
+  {% for post in posts %}
+    <article class="post-card">
+      <div class="post-meta"><span>BY {{ post.username|upper }}</span><span>{{ post.created_at[:10] }}</span></div>
+      <h3><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h3>
+      <p class="excerpt">{{ post.content|truncate(190) }}</p>
+      <div class="card-bottom"><a class="read-link" href="{{ url_for('post_detail', post_id=post.id) }}">Read story →</a><span>💬 {{ post.comment_count }}</span></div>
+    </article>
+  {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state"><h3>Your reading list starts here.</h3><p>There are no posts yet. Be the first to share a story.</p><a class="read-link" href="{{ url_for('new_post') if session.get('user_id') else url_for('register') }}">Create a post →</a></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Join · Ink & Ideas{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-intro"><p class="eyebrow">YOUR VOICE MATTERS</p><h1>Make room for<br><em>your ideas.</em></h1><p>Create an account to publish stories and join discussions.</p></div>
+<form class="form-card" method="post"><h2>Create account</h2><label>Username</label><input name="username" minlength="3" required placeholder="Choose a username"><label>Password</label><input name="password" type="password" minlength="6" required placeholder="At least 6 characters"><button class="button full" type="submit">Create account</button><p class="form-note">Already a member? <a href="{{ url_for('login') }}">Log in</a></p></form></div>
+{% endblock %}
